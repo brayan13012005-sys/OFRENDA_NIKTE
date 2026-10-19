@@ -1,0 +1,1146 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <title>OFRENDA</title>
+</head>
+<body>
+    
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+
+<!-- Aquí va todo el código de three.js -->
+<!-- script type="importmap" importa las librerías necesarias para three.js-->
+<script src="./font/Anak Gedong_Regular.js"></script>
+<script type="importmap"> 
+     {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/OrbitControls": "./js/OrbitControls.js" 
+        }
+}
+</script>
+<script type="module"> 
+//🗃️🗃️ Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import {OrbitControls} from 'three/OrbitControls';
+    console.log(OrbitControls);
+    import {TextGeometry} from "./js/TextGeometry.js";
+    import {FontLoader} from "./js/FontLoader.js";
+
+
+    import {RoundedBoxGeometry} from "./js/RoundedBoxGeometry.js"
+
+    import CALACA from "./Props/CRANEO.js"
+    import FRUTAS from "./Props/FRUTAS.js"
+    import TAZA from "./Props/TAZA_1.js"
+    import MARCO_1 from "./Props/MARCO_1.js"
+    import PERRITO from "./Props/PERRITO.js"
+    import COCACOLA from "./Props/COCACOLA.js"
+    import QUETZAL from "./Props/QUETZAL.js"
+    import TEQUILA from "./Props/TEQUILA.js"
+    import VELA from "./Props/vela.js"
+    import GUITARRA from "./Props/guitarra.js"
+    import MARCOSEGUNDO from "./Props/MARCO_2.js"
+    import PAN from "./Props/PAN_MUERTO.js"
+    import CIGARROS from "./Props/CIGARROS.js"
+    import FLORES from "./Props/flores.js"
+    import CACTUS from "./Props/cactus.js"
+    import CALDERO from "./Props/calderoo.js"
+    import CALAVERITAS from "./Props/CALAVERITAS.js"
+
+
+
+
+
+
+//🕹️🕹️ Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById('myCanvas'), antialias: true,
+    });
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xDB6900);
+
+//GridHelper👽👽
+//var gridHelper = new THREE.GridHelper (50,50);
+//scene.add(gridHelper);
+
+//var axesHelper = new THREE.AxesHelper(50);
+//scene.add(axesHelper);
+
+
+
+
+// 🎬 Creando nueva escena - Es el espacio donde se colocan los objetos
+    var scene = new THREE.Scene();
+
+//🎥🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,8000
+      );
+    scene.add(camera);
+//GridHelper👽👽
+/*var gridHelper = new THREE.GridHelper (300,300);
+scene.add(gridHelper);
+
+var axesHelper = new THREE.AxesHelper(50);
+scene.add(axesHelper);*/
+
+
+    //Settings de la cámara
+    camera.position.set(0,370,1400);
+
+    // Añadiendo los OrbitControls
+    var controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+ 
+
+// Espacio para colocar los objetos
+//FONDO
+var loader = new THREE.TextureLoader();
+var bgTexture = loader.load('./assets/AZUL.jpeg');
+scene.background=bgTexture;
+
+
+
+
+///  💫💢🐭🐭 LUCES
+
+
+//LUZ AMBIENTAL
+var light2 = new THREE.DirectionalLight(0xCF0427,0.3);
+scene.add(light2);
+light2.position.set(50,40,0)
+
+var light3 = new THREE.HemisphereLight(0x545454,0x06068F,1);
+scene.add(light3);
+
+//PUNTOS DE LUZ DE VELADORAS
+
+var pl1 = new THREE.PointLight(0xFACC00,80,60,2.5);
+pl1.position.set(0,120,30);
+scene.add(pl1);
+pl1.rotation.set(0,Math.PI/2,0)
+
+/*var helper01 = new THREE.PointLightHelper(pl1);
+scene.add(helper01);
+pl1.castShadow = true;*/
+
+var pl2 = new THREE.PointLight(0xFACC00,80,60,2.5);
+pl2.position.set(-270,120,30);
+scene.add(pl2);
+pl2.rotation.set(0,Math.PI/2,0)
+
+/*var helper02 = new THREE.PointLightHelper(pl2);
+scene.add(helper02);
+pl2.castShadow = true;*/
+
+var pl3 = new THREE.PointLight(0xFACC00,80,60,2.5);
+pl3.position.set(270,120,30);
+scene.add(pl3);
+pl3.rotation.set(0,Math.PI/2,0)
+
+/*var helper03 = new THREE.PointLightHelper(pl3);
+scene.add(helper03);
+pl3.castShadow = true;*/
+
+var pl4 = new THREE.PointLight(0xFACC00,80,60,2.5);
+pl4.position.set(-270,120,-520);
+scene.add(pl4);
+pl4.rotation.set(0,Math.PI/2,0)
+
+/*var helper04 = new THREE.PointLightHelper(pl4);
+scene.add(helper04);
+pl4.castShadow = true;*/
+
+var pl5 = new THREE.PointLight(0xFACC00,80,60,2.5);
+pl5.position.set(0,120,-520);
+scene.add(pl5);
+pl5.rotation.set(0,Math.PI/2,0)
+
+/*var helper05 = new THREE.PointLightHelper(pl5);
+scene.add(helper05);
+pl5.castShadow = true;*/
+
+var pl6 = new THREE.PointLight(0xFACC00,80,60,2.5);
+pl6.position.set(270,120,-520);
+scene.add(pl6);
+pl6.rotation.set(0,Math.PI/2,0)
+
+/*var helper06 = new THREE.PointLightHelper(pl6);
+scene.add(helper06);
+pl6.castShadow = true;*/
+
+var pl7 = new THREE.PointLight(0xFACC00,80,60,3.5);
+pl7.position.set(-70,231,-180);
+scene.add(pl7);
+pl7.rotation.set(0,Math.PI/2,0)
+
+/*var helper07 = new THREE.PointLightHelper(pl7);
+scene.add(helper07);
+pl7.castShadow = true;*/
+
+var pl8 = new THREE.PointLight(0xFACC00,80,60,3.5);
+pl8.position.set(70,231,-180);
+scene.add(pl8);
+pl8.rotation.set(0,Math.PI/2,0)
+
+/*var helper08 = new THREE.PointLightHelper(pl8);
+scene.add(helper08);
+pl8.castShadow = true;*/
+
+var pl9 = new THREE.PointLight(0xFACC00,80,60,3.5);
+pl9.position.set(70,231,-320);
+scene.add(pl9);
+pl9.rotation.set(0,Math.PI/2,0)
+
+/*var helper09 = new THREE.PointLightHelper(pl9);
+scene.add(helper09);
+pl9.castShadow = true;*/
+
+var pl10 = new THREE.PointLight(0xFACC00,80,60,3.5);
+pl10.position.set(-70,231,-320);
+scene.add(pl10);
+pl10.rotation.set(0,Math.PI/2,0)
+
+/*var helper10 = new THREE.PointLightHelper(pl10);
+scene.add(helper10);
+pl10.castShadow = true;*/
+
+
+//LUZ CACTUS
+var pl11 = new THREE.PointLight(0x3EE65D,50,60,1.5);
+pl11.position.set(460,70,110);
+scene.add(pl11);
+pl11.rotation.set(0,Math.PI/2,0)
+
+/*var helper11 = new THREE.PointLightHelper(pl11);
+scene.add(helper11);
+pl11.castShadow = true;*/
+
+var pl12 = new THREE.PointLight(0x3EE65D,50,60,1.5);
+pl12.position.set(-460,70,110);
+scene.add(pl12);
+pl12.rotation.set(0,Math.PI/2,0)
+
+/*var helper12 = new THREE.PointLightHelper(pl12);
+scene.add(helper12);
+pl12.castShadow = true;*/
+
+var pl13 = new THREE.PointLight(0x3EE65D,50,60,1.5);
+pl13.position.set(-460,70,-250);
+scene.add(pl13);
+pl13.rotation.set(0,Math.PI/2,0)
+
+/*var helper13 = new THREE.PointLightHelper(pl12);
+scene.add(helper13);
+pl13.castShadow = true;*/
+
+var pl14 = new THREE.PointLight(0x3EE65D,50,60,1.5);
+pl14.position.set(460,70,-250);
+scene.add(pl14);
+pl14.rotation.set(0,Math.PI/2,0)
+
+/*var helper14 = new THREE.PointLightHelper(pl14);
+scene.add(helper14);
+pl14.castShadow = true;*/
+
+
+//LUZ GUITARRAS
+
+var pl15 = new THREE.PointLight(0xAF36F5,70,60,1.5);
+pl15.position.set(200,5,170);
+scene.add(pl15);
+pl15.rotation.set(0,Math.PI/2,0)
+
+/*var helper15 = new THREE.PointLightHelper(pl15);
+scene.add(helper15);
+pl15.castShadow = true;*/
+
+var pl16 = new THREE.PointLight(0xAF36F5,70,60,1.5);
+pl16.position.set(-200,5,170);
+scene.add(pl16);
+pl16.rotation.set(0,Math.PI/2,0)
+
+/*var helper16 = new THREE.PointLightHelper(pl16);
+scene.add(helper16);
+pl16.castShadow = true;*/
+
+
+
+//LUZ QUETZAL
+
+var luzSpot01 = new THREE.SpotLight(0xCF0427, 0.6, 5.9, Math.PI / 6, 1, 0);
+scene.add(luzSpot01);
+scene.add(luzSpot01.target);
+var spotLightHelper = new THREE.SpotLightHelper(luzSpot01);
+scene.add(spotLightHelper);
+luzSpot01.position.set(0, 200, -400);
+
+luzSpot01.target.position.set(0, 520, -200);
+spotLightHelper.update();
+
+
+
+//LUZ RETRATOS
+var luzSpot03 = new THREE.SpotLight(0x2D61FC, 0, 6.8, Math.PI / 12, 1, 0);
+scene.add(luzSpot03);
+scene.add(luzSpot03.target);
+/*var spotLightHelper3 = new THREE.SpotLightHelper(luzSpot03);
+scene.add(spotLightHelper3);
+luzSpot03.position.set(-140, 50, 170);
+
+luzSpot03.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+var luzSpot04 = new THREE.SpotLight(0x2D61FC, 0, 6.8, Math.PI / 12, 1, 0);
+scene.add(luzSpot04);
+scene.add(luzSpot04.target);
+/*var spotLightHelper4 = new THREE.SpotLightHelper(luzSpot04);
+scene.add(spotLightHelper4);
+luzSpot04.position.set(140, 50, 170);
+
+luzSpot04.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+
+
+//LUZ TEQUILA
+
+var luzSpot05 = new THREE.SpotLight(0xF2D80A, 1, 10.8, Math.PI / 0.5, 0.5, 0);
+scene.add(luzSpot05);
+scene.add(luzSpot05.target);
+luzSpot05.position.set(-140, 10, 310);
+/*var spotLightHelper5 = new THREE.SpotLightHelper(luzSpot05);
+scene.add(spotLightHelper5);
+
+
+luzSpot05.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+var luzSpot06 = new THREE.SpotLight(0xF2D80A, 1, 10.8, Math.PI / 0.5, 0.5, 0);
+scene.add(luzSpot06);
+scene.add(luzSpot06.target);
+luzSpot06.position.set(140, 10, 310);
+/*var spotLightHelper6 = new THREE.SpotLightHelper(luzSpot06);
+scene.add(spotLightHelper6);
+
+
+luzSpot06.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+
+//LUZ CALAVERITAS
+
+var luzSpot07 = new THREE.SpotLight(0xF2D80A, 1, 6.8, Math.PI / 1.5, 0.5, 0);
+scene.add(luzSpot07);
+scene.add(luzSpot07.target);
+luzSpot07.position.set(-240, 10, 580);
+/*var spotLightHelper7 = new THREE.SpotLightHelper(luzSpot07);
+scene.add(spotLightHelper7);
+
+
+luzSpot07.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+var luzSpot08 = new THREE.SpotLight(0xF2D80A, 1, 6.8, Math.PI / 1.5, 0.5, 0);
+scene.add(luzSpot08);
+scene.add(luzSpot08.target);
+luzSpot08.position.set(240, 10, 580);
+/*var spotLightHelper8 = new THREE.SpotLightHelper(luzSpot08);
+scene.add(spotLightHelper8);
+
+luzSpot08.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+
+//LUZ LATERAL
+var luzSpot09 = new THREE.SpotLight(0x9E3DF2, 1, 1.8, Math.PI / 1.5, 0.5, 0);
+scene.add(luzSpot09);
+scene.add(luzSpot09.target);
+luzSpot09.position.set(-380, 100, -160);
+/*var spotLightHelper9 = new THREE.SpotLightHelper(luzSpot09);
+scene.add(spotLightHelper9);
+spotLightHelper9.rotation.set(0,0,2*Math.PI/2)
+luzSpot09.position.set(-380, 100, -160);
+
+luzSpot09.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+
+var luzSpot10 = new THREE.SpotLight(0x74EDA0, 1, 1.8, Math.PI / 1.5, 0.5, 0);
+scene.add(luzSpot10);
+scene.add(luzSpot10.target);
+luzSpot10.position.set(-380, 100, -360);
+/*var spotLightHelper10 = new THREE.SpotLightHelper(luzSpot10);
+scene.add(spotLightHelper10);
+spotLightHelper10.rotation.set(0,0,2*Math.PI/2)
+
+
+luzSpot10.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+var luzSpot11 = new THREE.SpotLight(0x74EDA0, 1, 1.8, Math.PI / 1.5, 0.5, 0);
+scene.add(luzSpot11);
+scene.add(luzSpot11.target);
+luzSpot11.position.set(380, 100, -360);
+/*var spotLightHelper11 = new THREE.SpotLightHelper(luzSpot11);
+scene.add(spotLightHelper11);
+spotLightHelper11.rotation.set(0,0,-2*Math.PI/2)
+
+
+luzSpot11.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+var luzSpot12 = new THREE.SpotLight(0x9E3DF2, 1, 1.8, Math.PI / 1.5, 0.5, 0);
+scene.add(luzSpot12);
+scene.add(luzSpot12.target);
+luzSpot12.position.set(380, 100, -160);
+/*var spotLightHelper12 = new THREE.SpotLightHelper(luzSpot12);
+scene.add(spotLightHelper12);
+spotLightHelper12.rotation.set(0,0,-2*Math.PI/2)
+luzSpot12.position.set(380, 100, -160);
+
+luzSpot12.target.position.set(0, 440, -500);
+spotLightHelper.update();*/
+
+
+
+
+
+
+
+
+
+
+//OBJETOS  ✏️✏️✏️✏️  🪶
+
+ var geometry07 = new THREE.BoxGeometry(1100,8,1250,6,6,6);
+ var texture07 = new THREE.TextureLoader().load("./assets/arenaazul1.jpeg");
+ var material07 = new THREE.MeshLambertMaterial({map:texture07});
+ var mesh07 = new THREE.Mesh(geometry07,material07);
+
+ scene.add(mesh07);
+ mesh07.position.set(0,0.5,0); 
+
+//BASES DE LA PIRAMIDE
+
+var base1 = new THREE.CylinderGeometry(120,150,20,4,4);
+var mete1 = new THREE.MeshPhongMaterial({
+    color: 0xE86507,
+    shiniess:200,
+    specular: 0x141414  
+});
+
+var mesh001 = new THREE.Mesh(base1,mete1);
+scene.add(mesh001);
+mesh001.position.set(0,10.5,0);
+
+var base2 = new THREE.CylinderGeometry(90,105,15,4,4);
+var mete2 = new THREE.MeshLambertMaterial({
+    color: 0x4F2202,
+    shiniess:200,
+    specular: 0xF527D6 
+});
+
+var mesh002 = new THREE.Mesh(base2,mete2);
+scene.add(mesh002);
+mesh002.position.set(0,26,0);
+
+var base3 = new THREE.CylinderGeometry(55,75,15,4,4);
+var mete3 = new THREE.MeshLambertMaterial({
+    color: 0xE86507,
+    shiniess:200,
+    specular: 0xF527D6 
+});
+
+var mesh003 = new THREE.Mesh(base3,mete3);
+scene.add(mesh003);
+mesh003.rotation.set(0,0,0);
+mesh003.position.set(0,40,0);
+
+var base4 = new THREE.CylinderGeometry(35,50,15,4,4);
+var mete4 = new THREE.MeshLambertMaterial({
+    color: 0x4F2202,
+    shiniess:200,
+    specular: 0xF527D6 
+});
+
+var mesh004 = new THREE.Mesh(base4,mete4);
+scene.add(mesh004);
+mesh004.rotation.set(0,0,0);
+mesh004.position.set(0,50,0);
+
+var base5 = new THREE.CylinderGeometry(10,22,9,4,4);
+var mete5 = new THREE.MeshLambertMaterial({
+    color: 0xE86507,
+    shiniess:200,
+    specular: 0xF527D6 
+});
+
+var mesh005 = new THREE.Mesh(base5,mete5);
+scene.add(mesh005);
+mesh005.rotation.set(0,0,0);
+mesh005.position.set(0,62,0);
+
+
+//PIRAMIDE AGRUPADA
+
+var PIRAMIDE = new THREE.Group();
+PIRAMIDE.add(mesh001,mesh002,mesh003,mesh004,mesh005);
+scene.add(PIRAMIDE);
+PIRAMIDE.scale.set(3.5,3.5,3.5);
+PIRAMIDE.position.set(0,0,-250);
+PIRAMIDE.rotation.set(0,Math.PI/4,0)
+
+
+
+//CALACA1
+var CALACA1 = CALACA({x:0, y:233, z:-260});
+scene.add(CALACA1);
+CALACA1.scale.set(6,6,6);
+
+
+
+//QUETZAL
+var QUETZAL1 = QUETZAL({x:0, y:300, z:-700});
+scene.add(QUETZAL1);
+QUETZAL1.scale.set(10,10,10);
+
+
+
+//FRUTAS1
+var FRUTAS1 = FRUTAS({x:0, y:3, z:500});
+scene.add(FRUTAS1);
+FRUTAS1.scale.set(6,6,6);
+
+//FRUTAS2
+var FRUTAS2 = FRUTAS1.clone();
+scene.add(FRUTAS2);
+FRUTAS2.position.set(-280,72,-270);
+FRUTAS2.scale.set(2.5,2.5,2.5);
+FRUTAS2.rotation.set(0,3*Math.PI/2,0);
+
+//FRUTAS3
+var FRUTAS3 = FRUTAS1.clone();
+scene.add(FRUTAS3);
+FRUTAS3.position.set(280,72,-270);
+FRUTAS3.scale.set(2.5,2.5,2.5);
+FRUTAS3.rotation.set(0,Math.PI/2,0);
+
+
+
+//TAZA1
+var TAZA1 = TAZA({x:0, y:5, z:320});
+scene.add(TAZA1);
+TAZA1.scale.set(4,4,4);
+
+//TAZA2
+var TAZA2 = TAZA1.clone();
+scene.add(TAZA2);
+TAZA2.position.set(-280,72,-200);
+TAZA2.scale.set(3,3,3);
+TAZA2.rotation.set(0,3*Math.PI/2,0);
+
+//TAZA3
+var TAZA3 = TAZA1.clone();
+scene.add(TAZA3);
+TAZA3.position.set(-280,72,-340);
+TAZA3.scale.set(3,3,3);
+TAZA3.rotation.set(0,3*Math.PI/2,0);
+
+//TAZA4
+var TAZA4 = TAZA1.clone();
+scene.add(TAZA4);
+TAZA4.position.set(280,72,-340);
+TAZA4.scale.set(3,3,3);
+TAZA4.rotation.set(0,Math.PI/2,0);
+
+//TAZA5
+var TAZA5 = TAZA1.clone();
+scene.add(TAZA5);
+TAZA5.position.set(280,72,-200);
+TAZA5.scale.set(3,3,3);
+TAZA5.rotation.set(0,Math.PI/2,0);
+
+//TAZA6
+var TAZA6 = TAZA1.clone();
+scene.add(TAZA6);
+TAZA6.position.set(-430,5,450);
+TAZA6.scale.set(4,4,4);
+TAZA6.rotation.set(0,Math.PI/2,0);
+
+//TAZA7
+var TAZA7 = TAZA1.clone();
+scene.add(TAZA7);
+TAZA7.position.set(430,5,450);
+TAZA7.scale.set(4,4,4);
+TAZA7.rotation.set(0,Math.PI/2,0);
+
+
+
+//MARCO1
+var MARCO1 = MARCO_1({x:120, y:75, z:30});
+scene.add(MARCO1);
+MARCO1.scale.set(5,5,5);
+
+//MARCO 2
+var MARCO2 = MARCOSEGUNDO({x:-120, y:75, z:30});
+scene.add(MARCO2);
+MARCO2.scale.set(5,5,5);
+
+
+
+//PERRITO1
+var PERRITO1 = PERRITO({x:-380, y:0, z:400});
+scene.add(PERRITO1);
+PERRITO1.scale.set(3,3,3);
+PERRITO1.position.set(-400,3,250);
+PERRITO1.rotation.set(0,-Math.PI/4,0);
+
+//PERRITO2
+var PERRITO2 = PERRITO1.clone();
+scene.add(PERRITO2);
+PERRITO2.position.set(400,3,250);
+PERRITO2.rotation.set(0,Math.PI/4,0);
+
+//PERRITO3
+var PERRITO3 = PERRITO1.clone();
+scene.add(PERRITO3);
+PERRITO3.position.set(450,3,-500);
+PERRITO3.rotation.set(0,3*Math.PI/4,0);
+
+//PERRITO4
+var PERRITO4 = PERRITO1.clone();
+scene.add(PERRITO4);
+PERRITO4.position.set(-450,3,-500);
+PERRITO4.rotation.set(0,-3*Math.PI/4,0);
+
+
+
+//COCACOLA1
+var COCACOLA1 = COCACOLA({x:-280, y:-13, z:230});
+scene.add(COCACOLA1);
+COCACOLA1.scale.set(4,4,4);
+
+//COCACOLA2
+var COCACOLA2 = COCACOLA1.clone();
+scene.add(COCACOLA2);
+COCACOLA2.position.set(280,-13,230);
+
+//COCACOLA3
+var COCACOLA3 = COCACOLA1.clone();
+scene.add(COCACOLA3);
+COCACOLA3.position.set(-280,72,-400);
+COCACOLA3.rotation.set(0,3*Math.PI/2,0);
+COCACOLA3.scale.set(2,2,2);
+
+//COCACOLA4
+var COCACOLA4 = COCACOLA1.clone();
+scene.add(COCACOLA4);
+COCACOLA4.position.set(280,72,-400);
+COCACOLA4.rotation.set(0,Math.PI/2,0);
+COCACOLA4.scale.set(2,2,2);
+
+
+
+//TEQUILA1
+var TEQUILA1 = TEQUILA({x:-140, y:0, z:250});
+scene.add(TEQUILA1);
+TEQUILA1.scale.set(3,3,3);
+
+//TEQUILA2
+var TEQUILA2 = TEQUILA1.clone();
+scene.add(TEQUILA2);
+TEQUILA2.position.set(140,0,250);
+
+//TEQUILA3
+var TEQUILA3 = TEQUILA1.clone();
+scene.add(TEQUILA3);
+TEQUILA3.position.set(-270,72,-135);
+TEQUILA3.rotation.set(0,3*Math.PI/2,0);
+TEQUILA3.scale.set(2,2,2);
+
+//TEQUILA4
+var TEQUILA4 = TEQUILA1.clone();
+scene.add(TEQUILA4);
+TEQUILA4.position.set(270,72,-135);
+TEQUILA4.rotation.set(0,Math.PI/2,0);
+TEQUILA4.scale.set(2,2,2);
+
+//TEQUILA5
+var TEQUILA5 = TEQUILA1.clone();
+scene.add(TEQUILA5);
+TEQUILA5.position.set(120,72,-520);
+TEQUILA5.rotation.set(0,2*Math.PI/2,0);
+TEQUILA5.scale.set(2,2,2);
+
+//TEQUILA6
+var TEQUILA6 = TEQUILA1.clone();
+scene.add(TEQUILA6);
+TEQUILA6.position.set(-120,72,-520);
+TEQUILA6.rotation.set(0,2*Math.PI/2,0);
+TEQUILA6.scale.set(2,2,2);
+
+
+
+//CIGARROS1
+var CIGARROS1 = CIGARROS({x:0, y:0, z:200});
+scene.add(CIGARROS1);
+CIGARROS1.scale.set(1,1,1);
+
+//CIGARROS2
+var CIGARROS2 = CIGARROS1.clone();
+scene.add(CIGARROS2);
+CIGARROS2.position.set(-270,72,-460);
+CIGARROS2.rotation.set(0,3*Math.PI/2,0);
+CIGARROS2.scale.set(0.7,0.7,0.7);
+
+//CIGARROS3
+var CIGARROS3 = CIGARROS1.clone();
+scene.add(CIGARROS3);
+CIGARROS3.position.set(270,72,-460);
+CIGARROS3.rotation.set(0,Math.PI/2,0);
+CIGARROS3.scale.set(0.7,0.7,0.7);
+
+
+
+//CALAVERITAS1
+var CALAVERITAS1 = CALAVERITAS({x:250, y:0, z:500});
+scene.add(CALAVERITAS1);
+CALAVERITAS1.scale.set(1.8,1.8,1.8);
+
+//CALAVERITAS2
+var CALAVERITAS2 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS2);
+CALAVERITAS2.position.set(-250,0,500);
+
+//CALAVERITAS3
+var CALAVERITAS3 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS3);
+CALAVERITAS3.position.set(200,75,30);
+CALAVERITAS3.scale.set(1,1,1);
+
+//CALAVERITAS4
+var CALAVERITAS4 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS4);
+CALAVERITAS4.position.set(-200,75,30);
+CALAVERITAS4.scale.set(1,1,1);
+
+//CALAVERITAS5
+var CALAVERITAS5 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS5);
+CALAVERITAS5.position.set(270,72,-50);
+CALAVERITAS5.scale.set(1,1,1);
+CALAVERITAS5.rotation.set(0,Math.PI/2,0);
+
+//CALAVERITAS6
+var CALAVERITAS6 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS6);
+CALAVERITAS6.position.set(-270,72,-50);
+CALAVERITAS6.scale.set(1,1,1);
+CALAVERITAS6.rotation.set(0,3*Math.PI/2,0);
+
+//CALAVERITAS7
+var CALAVERITAS7 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS7);
+CALAVERITAS7.position.set(200,75,-535);
+CALAVERITAS7.scale.set(1,1,1);
+CALAVERITAS7.rotation.set(0,2*Math.PI/2,0);
+
+//CALAVERITAS8
+var CALAVERITAS8 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS8);
+CALAVERITAS8.position.set(-200,75,-535);
+CALAVERITAS8.scale.set(1,1,1);
+CALAVERITAS8.rotation.set(0,2*Math.PI/2,0);
+
+//CALAVERITAS9
+var CALAVERITAS9 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS9);
+CALAVERITAS9.position.set(-70,201.5,-250);
+CALAVERITAS9.scale.set(1,1,1);
+CALAVERITAS9.rotation.set(0,3*Math.PI/2,0);
+
+//CALAVERITAS10
+var CALAVERITAS10 = CALAVERITAS1.clone();
+scene.add(CALAVERITAS10);
+CALAVERITAS10.position.set(70,201.5,-250);
+CALAVERITAS10.scale.set(1,1,1);
+CALAVERITAS10.rotation.set(0,Math.PI/2,0);
+
+
+
+//PAN MUERTO1
+var PANMUERTO1 = PAN({x:-250, y:5, z:400});
+scene.add(PANMUERTO1);
+PANMUERTO1.scale.set(0.7,0.7,0.7);
+
+//PAN MUERTO2
+var PANMUERTO2 = PANMUERTO1.clone();
+scene.add(PANMUERTO2);
+PANMUERTO2.position.set(250,5,400);
+
+//PAN MUERTO3
+var PANMUERTO3 = PANMUERTO1.clone();
+scene.add(PANMUERTO3);
+PANMUERTO3.position.set(-60,75,30);
+PANMUERTO3.scale.set(0.2,0.2,0.2);
+
+//PAN MUERTO4
+var PANMUERTO4 = PANMUERTO1.clone();
+scene.add(PANMUERTO4);
+PANMUERTO4.position.set(60,75,30);
+PANMUERTO4.scale.set(0.2,0.2,0.2);
+
+//PAN MUERTO5
+var PANMUERTO5 = PANMUERTO1.clone();
+scene.add(PANMUERTO5);
+PANMUERTO5.position.set(-60,75,-530);
+PANMUERTO5.scale.set(0.2,0.2,0.2);
+PANMUERTO5.rotation.set(0,2*Math.PI/2,0);
+
+//PAN MUERTO6
+var PANMUERTO6 = PANMUERTO1.clone();
+scene.add(PANMUERTO6);
+PANMUERTO6.position.set(60,75,-530);
+PANMUERTO6.scale.set(0.2,0.2,0.2);
+PANMUERTO6.rotation.set(0,2*Math.PI/2,0);
+
+//PAN MUERTO7
+var PANMUERTO7 = PANMUERTO1.clone();
+scene.add(PANMUERTO7);
+PANMUERTO7.position.set(0,201.5,-180);
+PANMUERTO7.scale.set(0.15,0.15,0.15);
+PANMUERTO7.rotation.set(0,2*Math.PI/2,0);
+
+//PAN MUERTO8
+var PANMUERTO8 = PANMUERTO1.clone();
+scene.add(PANMUERTO8);
+PANMUERTO8.position.set(0,201.5,-320);
+PANMUERTO8.scale.set(0.15,0.15,0.15);
+PANMUERTO8.rotation.set(0,2*Math.PI/2,0);
+
+//PAN MUERTO9
+var PANMUERTO9 = PANMUERTO1.clone();
+scene.add(PANMUERTO9);
+PANMUERTO9.position.set(-460,5,-140);
+PANMUERTO9.scale.set(0.7,0.7,0.7);
+
+//PAN MUERTO8
+var PANMUERTO8 = PANMUERTO1.clone();
+scene.add(PANMUERTO8);
+PANMUERTO8.position.set(460,5,-140);
+PANMUERTO8.scale.set(0.7,0.7,0.7);
+
+
+
+//VELA1
+var VELA1 = VELA({x:0, y:70, z:30});
+scene.add(VELA1);
+VELA1.scale.set(8,8,8);
+
+//VELA2
+var VELA2 = VELA1.clone();
+scene.add(VELA2);
+VELA2.position.set(-270,70,30);
+
+//VELA3
+var VELA3 = VELA1.clone();
+scene.add(VELA3);
+VELA3.position.set(270,70,30);
+
+//VELA4
+var VELA4 = VELA1.clone();
+scene.add(VELA4);
+VELA4.position.set(-270,70,-520);
+
+//VELA5
+var VELA5 = VELA1.clone();
+scene.add(VELA5);
+VELA5.position.set(0,70,-520);
+
+//VELA6
+var VELA6 = VELA1.clone();
+scene.add(VELA6);
+VELA6.position.set(270,70,-520);
+
+//VELA7
+var VELA7 = VELA1.clone();
+scene.add(VELA7);
+VELA7.position.set(-70,200,-180);
+VELA7.scale.set(5,5,5);
+
+//VELA8
+var VELA8 = VELA1.clone();
+scene.add(VELA8);
+VELA8.position.set(70,200,-180);
+VELA8.scale.set(5,5,5);
+
+//VELA9
+var VELA9 = VELA1.clone();
+scene.add(VELA9);
+VELA9.position.set(-70,200,-320);
+VELA9.scale.set(5,5,5);
+
+//VELA10
+var VELA10 = VELA1.clone();
+scene.add(VELA10);
+VELA10.position.set(70,200,-320);
+VELA10.scale.set(5,5,5);
+
+
+
+//GUITARRA1
+var GUITARRA1 = GUITARRA({x:-200, y:5, z:130});
+scene.add(GUITARRA1);
+GUITARRA1.scale.set(8,8,8);
+GUITARRA1.rotation.set(0,2*Math.PI/2,0)
+
+//GUITARRA2
+var GUITARRA2 = GUITARRA1.clone();
+scene.add(GUITARRA2);
+GUITARRA2.position.set(200,5,130);
+
+
+
+//CAMINO
+
+//FLORES
+var FLORES1 = FLORES({x:-80, y:0, z:550});
+scene.add(FLORES1);
+FLORES1.scale.set(3,3,3);
+
+//FLORES2
+var FLORES2 = FLORES1.clone();
+scene.add(FLORES2);
+FLORES2.position.set(-80,0,400);
+
+//FLORES3
+var FLORES3 = FLORES1.clone();
+scene.add(FLORES3);
+FLORES3.position.set(-80,0,250);
+
+//FLORES4
+var FLORES4 = FLORES1.clone();
+scene.add(FLORES4);
+FLORES4.position.set(80,0,250);
+
+//FLORES5
+var FLORES5 = FLORES1.clone();
+scene.add(FLORES5);
+FLORES5.position.set(80,0,400);
+
+//FLORES6
+var FLORES6 = FLORES1.clone();
+scene.add(FLORES6);
+FLORES6.position.set(80,0,550);
+
+//FLORES7
+var FLORES7 = FLORES1.clone();
+scene.add(FLORES7);
+FLORES7.position.set(80,0,120);
+
+//FLORES8
+var FLORES8 = FLORES1.clone();
+scene.add(FLORES8);
+FLORES8.position.set(-80,0,120);
+
+
+
+//MARCO
+
+//FLORES9
+var FLORES9 = FLORES1.clone();
+scene.add(FLORES9);
+FLORES9.position.set(0,130,-40);
+FLORES9.rotation.set(0,Math.PI/2,Math.PI/2);
+
+//FLORES10
+var FLORES10 = FLORES1.clone();
+scene.add(FLORES10);
+FLORES10.position.set(150,130,-40);
+FLORES10.rotation.set(0,Math.PI/2,Math.PI/2);
+
+//FLORES11
+var FLORES11 = FLORES1.clone();
+scene.add(FLORES11);
+FLORES11.position.set(-150,130,-40);
+FLORES11.rotation.set(0,Math.PI/2,Math.PI/2);
+
+//FLORES12
+var FLORES12 = FLORES1.clone();
+scene.add(FLORES12);
+FLORES12.position.set(0,130,-470);
+FLORES12.rotation.set(0,Math.PI/2,Math.PI/2);
+
+//FLORES13
+var FLORES13 = FLORES1.clone();
+scene.add(FLORES13);
+FLORES13.position.set(150,130,-470);
+FLORES13.rotation.set(0,Math.PI/2,Math.PI/2);
+
+//FLORES14
+var FLORES14 = FLORES1.clone();
+scene.add(FLORES14);
+FLORES14.position.set(-150,130,-470);
+FLORES14.rotation.set(0,Math.PI/2,Math.PI/2);
+
+//FLORES15
+var FLORES15 = FLORES1.clone();
+scene.add(FLORES15);
+FLORES15.position.set(-210,130,-400);
+FLORES15.rotation.set(0,0,Math.PI/2);
+
+//FLORES16
+var FLORES16 = FLORES1.clone();
+scene.add(FLORES16);
+FLORES16.position.set(-210,130,-250);
+FLORES16.rotation.set(0,0,Math.PI/2);
+
+//FLORES17
+var FLORES17 = FLORES1.clone();
+scene.add(FLORES17);
+FLORES17.position.set(-210,130,-100);
+FLORES17.rotation.set(0,0,Math.PI/2);
+
+//FLORES18
+var FLORES18 = FLORES1.clone();
+scene.add(FLORES18);
+FLORES18.position.set(210,130,-400);
+FLORES18.rotation.set(0,0,Math.PI/2);
+
+//FLORES19
+var FLORES19 = FLORES1.clone();
+scene.add(FLORES19);
+FLORES19.position.set(210,130,-250);
+FLORES19.rotation.set(0,0,Math.PI/2);
+
+//FLORES20
+var FLORES20 = FLORES1.clone();
+scene.add(FLORES20);
+FLORES20.position.set(210,130,-100);
+FLORES20.rotation.set(0,0,Math.PI/2);
+
+
+
+//CACTUS1
+var CACTUS1 = CACTUS({x:-460, y:-20, z:50});
+scene.add(CACTUS1);
+CACTUS1.scale.set(12,12,12);
+
+//CACTUS2
+var CACTUS2 = CACTUS1.clone();
+scene.add(CACTUS2);
+CACTUS2.position.set(460,-20,50);
+
+//CACTUS3
+var CACTUS3 = CACTUS1.clone();
+scene.add(CACTUS3);
+CACTUS3.position.set(460,-20,-300);
+
+//CACTUS4
+var CACTUS4 = CACTUS1.clone();
+scene.add(CACTUS4);
+CACTUS4.position.set(-460,-20,-300);
+
+
+
+//CALDERO1
+var CALDERO1 = CALDERO({x:-120, y:0, z:430});
+scene.add(CALDERO1);
+CALDERO1.scale.set(0.5,0.5,0.5);
+
+//CALDERO2
+var CALDERO2 = CALDERO1.clone();
+scene.add(CALDERO2);
+CALDERO2.position.set(120,0,430);
+
+//CALDERO3
+var CALDERO3 = CALDERO1.clone();
+scene.add(CALDERO3);
+CALDERO3.position.set(-440,0,300);
+
+//CALDERO4
+var CALDERO4 = CALDERO1.clone();
+scene.add(CALDERO4);
+CALDERO4.position.set(440,0,300);
+
+//CALDERO5
+var CALDERO5 = CALDERO1.clone();
+scene.add(CALDERO5);
+CALDERO5.position.set(500,0,-550);
+
+//CALDERO6
+var CALDERO6 = CALDERO1.clone();
+scene.add(CALDERO6);
+CALDERO6.position.set(-500,0,-550);
+
+
+
+//FRASE
+var loader = new FontLoader();
+
+var font = loader.parse(fontJSON);
+var geometry6 = new TextGeometry('Feliz Dia', {
+    font: font,
+    size: 20,
+    height: 5,
+})
+geometry6.center();
+
+var material6 = new THREE.MeshLambertMaterial({
+    color: 0xE6E6FA,
+    shading: THREE.FlatShading,
+});
+
+var mesh6 = new THREE.Mesh(geometry6, material6);
+scene.add(mesh6);
+mesh6.position.set(0,210,-80)
+mesh6.scale.set(2,2,2)
+
+var loader = new FontLoader();
+
+var font01 = loader.parse(fontJSON);
+var geometry7 = new TextGeometry('de Muertos', {
+    font: font,
+    size: 20,
+    height: 5,
+})
+geometry7.center();
+
+var material7 = new THREE.MeshLambertMaterial({
+    color: 0xE6E6FA,
+    shading: THREE.FlatShading,
+});
+
+var mesh7 = new THREE.Mesh(geometry7, material7);
+scene.add(mesh7);
+mesh7.position.set(0,160,-80)
+mesh7.scale.set(2,2,2)
+
+
+
+
+//🎰🎰Rendering y animación
+    requestAnimationFrame(render);
+    function render() {
+    //🪄🪄 Animación - 
+
+    CALACA1.rotation.y += 0.02;
+    //QUETZAL1.rotation.y += 0.02;
+
+
+
+    //🎮🎮Actualización del OrbitControls para generar la suavidad de movimiento
+    controls.update();
+    //Llamado para renderizar y volver a llamar a la misma función (render)
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    }
+</script>
+</body>
+</html>
